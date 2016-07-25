@@ -1,0 +1,42 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13-lug-2016, 1.13.35
+    Author     : informatica
+*/
+
+body{
+    margin: 0; padding: 0;
+}
+
+#contentor{width: 99.9%; margin-top: 10px; margin: 0 auto;}
+
+#logo{width: 200px; height: 90px; float: left; font-size: 3em; font-family: sans-serif; text-align: center; vertical-align: central;}
+#banner{width:94%; height: 90px; float: left; font-family: sans-serif; }
+#menu{width: 200px; height: 600px; float: left; background:#FFFFCC;}
+
+#menu ul{
+    margin: 0;
+    padding: 6px 5px;
+    list-style: none;
+}
+
+
+#menu ul li a{
+    text-decoration: none;
+    color: #777;
+}
+
+
+#menu ul li a:hover{
+
+    background: #2277CC;
+    color: #FFF;
+}
+
+#conteudo{width: 80%; height: 600px; float: left;}
+#rodape{clear: both; font-size: 1.5em; text-align: center;}
+
