@@ -35,7 +35,7 @@
 
             <div id="contentor">
                 <div id="banner">
-                    <a href="../index.jsp" class="btn btn-info" role="button">Home</a>
+                    <a href="./index.jsp" class="btn btn-info" role="button">Home</a>
                     <h1 style="text-align: center">Tchoto - Gestão de Projectos</h1>
                 </div>
 
@@ -45,7 +45,7 @@
                     <br/>
 
 
-                    <form class="form-horizontal" role="form" action="" method="POST">
+                    <form class="form-horizontal" role="form" action="./municipioServlet?comando=editar" method="POST">
 
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Id:</label>

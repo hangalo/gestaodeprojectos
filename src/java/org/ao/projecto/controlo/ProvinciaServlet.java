@@ -51,7 +51,7 @@ public class ProvinciaServlet extends HttpServlet {
                     provincia.setIdProvincia(Integer.parseInt(idProvincia));
                 }
 
-                provincia.setNomeProvincia(request.getParameter("nome_provincia"));
+            
 
             } catch (NumberFormatException ex) {
                 System.err.println("Erro ao converter dado: " + ex.getMessage());
@@ -63,11 +63,14 @@ public class ProvinciaServlet extends HttpServlet {
             provinciaDAO = new ProvinciaDAO();
 
             if (comando.equalsIgnoreCase("guardar")) {
+               
+                 provincia.setNomeProvincia(request.getParameter("nome_provincia"));
                 provinciaDAO.save(provincia);
               response.sendRedirect("paginas/provincia_listar.jsp");
 
             } else if (comando.equalsIgnoreCase("editar")) {
-                provincia = provinciaDAO.findById(provincia.getIdProvincia());
+                provincia.setIdProvincia(Integer.parseInt(request.getParameter("id_provincia")));
+                provincia.setNomeProvincia(request.getParameter("nome_provincia"));
                 provinciaDAO.update(provincia);
                response.sendRedirect("paginas/provincia_listar.jsp");
 

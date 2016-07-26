@@ -40,7 +40,7 @@
                     <br/>
 
 
-                    <form class="form-horizontal" role="form" action="" method="POST">
+                    <form class="form-horizontal" role="form" action="../municipioServlet?comando=guardar" method="POST">
 
 
 

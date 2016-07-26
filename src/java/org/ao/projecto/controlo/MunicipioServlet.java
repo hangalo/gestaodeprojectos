@@ -43,10 +43,7 @@ public class MunicipioServlet extends HttpServlet {
                     municipio.setIdMunicipio(Integer.parseInt(idMunicipio));
                 }
 
-                municipio.setNomeMunicipio(request.getParameter("nome_municipio"));
-                Provincia provincia = new Provincia();
-                provincia.setIdProvincia(Integer.parseInt(request.getParameter("select_provincia")));
-                municipio.setProvincia(provincia);
+              
 
             } catch (NumberFormatException ex) {
                 System.err.println("Erro ao converter dado: " + ex.getMessage());
@@ -59,10 +56,23 @@ public class MunicipioServlet extends HttpServlet {
        
 
             if (comando.equalsIgnoreCase("guardar")) {
+                
+                  municipio.setNomeMunicipio(request.getParameter("nome_municipio"));
+                Provincia provincia = new Provincia();
+                provincia.setIdProvincia(Integer.parseInt(request.getParameter("select_provincia")));
+                municipio.setProvincia(provincia);
+                
                 municipioDAO.save(municipio);
                 response.sendRedirect("paginas/municipio_guardar.jsp");
+                
                 } else if (comando.equalsIgnoreCase("editar")) {
-                municipio = municipioDAO.findById(municipio.getIdMunicipio());
+                    
+                municipio.setIdMunicipio(Integer.parseInt( request.getParameter("id_municipio")));
+                
+                municipio.setNomeMunicipio(request.getParameter("nome_municipio"));
+                Provincia provincia = new Provincia();
+                provincia.setIdProvincia(Integer.parseInt(request.getParameter("select_provincia")));
+                municipio.setProvincia(provincia);
                 municipioDAO.update(municipio);
                 response.sendRedirect("paginas/municipio_listar.jsp");
 
