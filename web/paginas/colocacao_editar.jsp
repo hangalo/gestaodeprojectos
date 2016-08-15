@@ -1,14 +1,14 @@
 <%-- 
-    Document   : projecto_registo
+    Document   : projeto_registo
     Created on : 11-lug-2016, 23.46.24
     Author     : informatica
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="org.ao.projecto.modelo.*" %>
-<%@page import="org.ao.projecto.dao.*" %>
+<%@page import="org.ao.projeto.modelo.*" %>
+<%@page import="org.ao.projeto.dao.*" %>
 <%@page import="java.util.List" %>
-<%@page import="org.ao.projecto.util.*" %>
+<%@page import="org.ao.projeto.util.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -72,11 +72,11 @@
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Projecto:</label>
                             <div class="col-xs-5" >
-                                <select class="form-control" id="select_projecto_colocacao" name="select_projecto_colocacao">
+                                <select class="form-control" id="select_projeto_colocacao" name="select_projeto_colocacao">
                                     <option selected="true" value="">Selecione um Projecto</option>
 
                                     <% for (Projeto projeto : projetos) {%>
-                                    <option value="<%=projeto.getIdProjecto()%>"><%=projeto.getNomeProjecto()%></option>
+                                    <option value="<%=projeto.getIdProjeto()%>"><%=projeto.getNomeProjeto()%></option>
                                     <%
                                         }
                                     %>

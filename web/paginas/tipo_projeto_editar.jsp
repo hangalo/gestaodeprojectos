@@ -5,12 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="org.ao.projecto.modelo.*" %>
+<%@page import="org.ao.projeto.modelo.*" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Alterar tipo de projecto</title>
+        <title>Alterar tipo de projeto</title>
         <link href="./css/bootstrap.min.css" rel="stylesheet">
         <link href="./css/estilos.css" rel="stylesheet">
         <link href="./css/layout_paginas.css" rel="stylesheet">
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Id:</label>
                             <div class="col-xs-5" >
-                                <input type="date"  class="form-control" id="id_tipo_projeto" name="id_tipo_projeto" value="<%=tipoProjeto.getIdTipoProjecto()%>"  readonly="readonly"/>
+                                <input type="date"  class="form-control" id="id_tipo_projeto" name="id_tipo_projeto" value="<%=tipoProjeto.getIdTipoProjeto()%>"  readonly="readonly"/>
                             </div>
                         </div>
 
@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Tipo:</label>
                             <div class="col-xs-5" >
-                                <input type="date"  class="form-control" id="nome_tipo_projeto" name="nome_tipo_projeto" value="<%=tipoProjeto.getNomeTipoProjecto()%>"/>
+                                <input type="date"  class="form-control" id="nome_tipo_projeto" name="nome_tipo_projeto" value="<%=tipoProjeto.getNomeTipoProjeto()%>"/>
                             </div>
                         </div>
 

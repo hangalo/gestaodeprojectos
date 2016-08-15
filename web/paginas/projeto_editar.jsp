@@ -1,12 +1,12 @@
 <%-- 
-    Document   : projecto_registo
+    Document   : projeto_registo
     Created on : 11-lug-2016, 23.46.24
     Author     : informatica
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="org.ao.projecto.dao.*" %>
-<%@page import="org.ao.projecto.modelo.*" %>
+<%@page import="org.ao.projeto.dao.*" %>
+<%@page import="org.ao.projeto.modelo.*" %>
 <%@page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
@@ -41,47 +41,47 @@
                 <div id="conteudo">
                     <h3 style="text-align: center">Editar Projecto</h3>
                     <br/>
-                    <form class="form-horizontal" role="form" action="./projectoServlet?comando=editar" method="POST">
+                    <form class="form-horizontal" role="form" action="./projetoServlet?comando=editar" method="POST">
 
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Id:</label>
                             <div class="col-xs-4">
-                                <input type="text" class="form-control" id="id_projecto" name="id_projecto" value="<%=projeto.getIdProjecto()%>" readonly="readonly"/>
+                                <input type="text" class="form-control" id="id_projeto" name="id_projeto" value="<%=projeto.getIdProjeto()%>" readonly="readonly"/>
                             </div>                   
                         </div>
 
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Código:</label>
                             <div class="col-xs-4">
-                                <input type="text" class="form-control" id="codigo_projecto" name="codigo_projecto" value="<%=projeto.getCodigoProjecto()%>"/>
+                                <input type="text" class="form-control" id="codigo_projeto" name="codigo_projeto" value="<%=projeto.getCodigoProjeto()%>"/>
                             </div>                   
                         </div>
 
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Nome:</label>
                             <div class="col-xs-4">
-                                <input type="text" class="form-control" id="nome_projecto" name="nome_projecto" value="<%=projeto.getNomeProjecto()%>"/>
+                                <input type="text" class="form-control" id="nome_projeto" name="nome_projeto" value="<%=projeto.getNomeProjeto()%>"/>
                             </div>                   
                         </div>
 
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Descrição:</label>
                             <div class="col-xs-8" >
-                                <textarea class="form-control" rows="5" id="descricao_projecto" name="descricao_projecto" value="<%=projeto.getDescricaoProjecto()%>" ></textarea>
+                                <textarea class="form-control" rows="5" id="descricao_projeto" name="descricao_projeto" value="<%=projeto.getDescricaoProjeto()%>" ></textarea>
 
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Custo:</label>
                             <div class="col-xs-5" >
-                                <input type="text"  class="form-control" id="curso_projecto" name="curso_projecto" value="<%=projeto.getCustoProjecto()%>"/>
+                                <input type="text"  class="form-control" id="curso_projeto" name="curso_projeto" value="<%=projeto.getCustoProjeto()%>"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Financiador:</label>
                             <div class="col-xs-5" >
-                                <input type="text"  class="form-control" id="financiador_projecto" name="financiador_projecto" value="<%=projeto.getEntidadeFinanciadora()%>"/>
+                                <input type="text"  class="form-control" id="financiador_projeto" name="financiador_projeto" value="<%=projeto.getEntidadeFinanciadora()%>"/>
                             </div>
                         </div>
 
@@ -89,11 +89,11 @@
 
                             <label class="col-xs-3 control-label">Tipo</label>
                             <div class="col-xs-5" >
-                                <select class="form-control" id="select_tipo_projecto" name="select_tipo_projecto">
+                                <select class="form-control" id="select_tipo_projeto" name="select_tipo_projeto">
                                     <option selected="true" value="">Selecione um Funcionario</option>
 
                                     <% for (TipoProjeto tipoProjeto : tipoProjetos) {%>
-                                    <option value="<%=tipoProjeto.getIdTipoProjecto()%>"><%=tipoProjeto.getNomeTipoProjecto()%></option>
+                                    <option value="<%=tipoProjeto.getIdTipoProjeto()%>"><%=tipoProjeto.getNomeTipoProjeto()%></option>
                                     <%
                                         }
                                     %>

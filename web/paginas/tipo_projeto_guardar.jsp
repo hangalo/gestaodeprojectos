@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Registar tipo de projecto</title>
+        <title>Registar tipo de projeto</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/estilos.css" rel="stylesheet">
         <link href="../css/layout_paginas.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 <div id="contentor">
              <div id="banner">
                   <a href="../index.jsp" class="btn btn-info" role="button">Home</a>
-                <h1 style="text-align: center">Tchoto - Gestão de Projectos</h1>
+                <h1 style="text-align: center">Tchoto - Gestão de Projetos</h1>
             </div>
             
             <div id="conteudo">

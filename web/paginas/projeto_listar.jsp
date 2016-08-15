@@ -5,8 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="org.ao.projecto.dao.*" %>
-<%@page import="org.ao.projecto.modelo.*" %>
+<%@page import="org.ao.projeto.dao.*" %>
+<%@page import="org.ao.projeto.modelo.*" %>
 <%@page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
@@ -58,17 +58,17 @@
                         <tbody>
                             <%for (Projeto projeto : projetos) {%>
                             <tr>
-                                <td><%=projeto.getIdProjecto()%></td>
-                                <td><%=projeto.getCodigoProjecto()%></td>
-                                <td><%=projeto.getNomeProjecto()%></td>
-                                <td><%=projeto.getDescricaoProjecto()%></td>
-                                <td><%=projeto.getCustoProjecto()%></td>
+                                <td><%=projeto.getIdProjeto()%></td>
+                                <td><%=projeto.getCodigoProjeto()%></td>
+                                <td><%=projeto.getNomeProjeto()%></td>
+                                <td><%=projeto.getDescricaoProjeto()%></td>
+                                <td><%=projeto.getCustoProjeto()%></td>
                                 <td><%=projeto.getEntidadeFinanciadora()%></td>
-                                <td><%=projeto.getTipoProjecto()%></td>
+                                <td><%=projeto.getTipoProjeto()%></td>
 
-                                <td><a href="../projectoServlet?comando=prepara_editar&id_projeto=<%=projeto.getIdProjecto()%>"><img src="../imagens/edit.png" /></a></td>
-                                <td><a href="../projectoServlet?comando=eliminar&id_projeto=<%=projeto.getIdProjecto()%>"><img src="../imagens/delete.png" /></a></td>
-                                 <td><a href="../relatorioProjetoServlet?comando=imprimir_ficha_projeto&codigoProjeto=<%=projeto.getCodigoProjecto()%>"><img src="../imagens/print.png" /></a></td>
+                                <td><a href="../projetoServlet?comando=prepara_editar&id_projeto=<%=projeto.getIdProjeto()%>"><img src="../imagens/edit.png" /></a></td>
+                                <td><a href="../projetoServlet?comando=eliminar&id_projeto=<%=projeto.getIdProjeto()%>"><img src="../imagens/delete.png" /></a></td>
+                                 <td><a href="../relatorioProjetoServlet?comando=imprimir_ficha_projeto&codigoProjeto=<%=projeto.getCodigoProjeto()%>"><img src="../imagens/print.png" /></a></td>
                             </tr>
                             <%}%>
                         </tbody>

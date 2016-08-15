@@ -5,11 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="org.ao.projecto.dao.*" %>
-<%@page import="org.ao.projecto.modelo.*" %>
+<%@page import="org.ao.projeto.dao.*" %>
+<%@page import="org.ao.projeto.modelo.*" %>
 <%@page import="java.util.List" %>
 <%@page import="java.text.*" %>
-<%@page import="org.ao.projecto.util.*" %>
+<%@page import="org.ao.projeto.util.*" %>
 <!DOCTYPE html>
 <html>
     <head>
