@@ -31,7 +31,7 @@ CREATE TABLE `categoria_funcionario` (
   `nome_categoria` varchar(45) DEFAULT NULL,
   `salario_categoria` double DEFAULT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `categoria_funcionario`
@@ -49,15 +49,15 @@ DROP TABLE IF EXISTS `colocacao`;
 CREATE TABLE `colocacao` (
   `id_colocacao` int(11) NOT NULL AUTO_INCREMENT,
   `id_funcionario` int(11) NOT NULL,
-  `id_projecto` int(11) NOT NULL,
+  `id_projeto` int(11) NOT NULL,
   `data_inicio` date DEFAULT NULL,
   `data_fim` date DEFAULT NULL,
   PRIMARY KEY (`id_colocacao`),
-  KEY `fk_colocacao_projecto1_idx` (`id_projecto`),
+  KEY `fk_colocacao_projecto1_idx` (`id_projeto`),
   KEY `fk_colocacao_funcionario1_idx` (`id_funcionario`),
   CONSTRAINT `fk_colocacao_funcionario1` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario` (`id_funcionario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_colocacao_projecto1` FOREIGN KEY (`id_projecto`) REFERENCES `projecto` (`id_projecto`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_colocacao_projecto1` FOREIGN KEY (`id_projeto`) REFERENCES `projeto` (`id_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `colocacao`
@@ -76,7 +76,7 @@ CREATE TABLE `departamento` (
   `id_departamento` int(11) NOT NULL AUTO_INCREMENT,
   `nome_departamento` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_departamento`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `departamento`
@@ -116,7 +116,7 @@ CREATE TABLE `funcionario` (
   CONSTRAINT `fk_funcionario_categoria_funcionario1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria_funcionario` (`id_categoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_funcionario_departamento1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_funcionario_municipio1` FOREIGN KEY (`id_municipio`) REFERENCES `municipio` (`id_municipio`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `funcionario`
@@ -138,7 +138,7 @@ CREATE TABLE `municipio` (
   PRIMARY KEY (`id_municipio`),
   KEY `fk_municipio_provincia_idx` (`id_provincia`),
   CONSTRAINT `fk_municipio_provincia` FOREIGN KEY (`id_provincia`) REFERENCES `provincia` (`id_provincia`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `municipio`
@@ -149,30 +149,30 @@ CREATE TABLE `municipio` (
 
 
 --
--- Definition of table `projecto`
+-- Definition of table `projeto`
 --
 
-DROP TABLE IF EXISTS `projecto`;
-CREATE TABLE `projecto` (
-  `id_projecto` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo_projecto` char(45) NOT NULL,
-  `nome_projecto` varchar(100) DEFAULT NULL,
-  `descricao_projecto` varchar(250) DEFAULT NULL,
-  `custo_projecto` double DEFAULT NULL,
+DROP TABLE IF EXISTS `projeto`;
+CREATE TABLE `projeto` (
+  `id_projeto` int(11) NOT NULL AUTO_INCREMENT,
+  `codigo_projeto` char(45) NOT NULL,
+  `nome_projeto` varchar(100) DEFAULT NULL,
+  `descricao_projeto` varchar(250) DEFAULT NULL,
+  `custo_projeto` double DEFAULT NULL,
   `entidade_financiadora` varchar(100) DEFAULT NULL,
-  `id_tipo_projecto` int(11) NOT NULL,
-  PRIMARY KEY (`id_projecto`),
-  UNIQUE KEY `codigo_projecto_UNIQUE` (`codigo_projecto`),
-  KEY `fk_projecto_tipo_projecto1_idx` (`id_tipo_projecto`),
-  CONSTRAINT `fk_projecto_tipo_projecto1` FOREIGN KEY (`id_tipo_projecto`) REFERENCES `tipo_projecto` (`id_tipo_projecto`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `id_tipo_projeto` int(11) NOT NULL,
+  PRIMARY KEY (`id_projeto`),
+  UNIQUE KEY `codigo_projecto_UNIQUE` (`codigo_projeto`),
+  KEY `fk_projecto_tipo_projecto1_idx` (`id_tipo_projeto`),
+  CONSTRAINT `fk_projecto_tipo_projecto1` FOREIGN KEY (`id_tipo_projeto`) REFERENCES `tipo_projeto` (`id_tipo_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `projecto`
+-- Dumping data for table `projeto`
 --
 
-/*!40000 ALTER TABLE `projecto` DISABLE KEYS */;
-/*!40000 ALTER TABLE `projecto` ENABLE KEYS */;
+/*!40000 ALTER TABLE `projeto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `projeto` ENABLE KEYS */;
 
 
 --
@@ -184,7 +184,7 @@ CREATE TABLE `provincia` (
   `id_provincia` int(11) NOT NULL AUTO_INCREMENT,
   `nome_provincia` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_provincia`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `provincia`
@@ -195,22 +195,22 @@ CREATE TABLE `provincia` (
 
 
 --
--- Definition of table `tipo_projecto`
+-- Definition of table `tipo_projeto`
 --
 
-DROP TABLE IF EXISTS `tipo_projecto`;
-CREATE TABLE `tipo_projecto` (
-  `id_tipo_projecto` int(11) NOT NULL AUTO_INCREMENT,
-  `nome_tipo_projecto` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id_tipo_projecto`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `tipo_projeto`;
+CREATE TABLE `tipo_projeto` (
+  `id_tipo_projeto` int(11) NOT NULL AUTO_INCREMENT,
+  `nome_tipo_projeto` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_tipo_projeto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tipo_projecto`
+-- Dumping data for table `tipo_projeto`
 --
 
-/*!40000 ALTER TABLE `tipo_projecto` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipo_projecto` ENABLE KEYS */;
+/*!40000 ALTER TABLE `tipo_projeto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tipo_projeto` ENABLE KEYS */;
 
 
 
