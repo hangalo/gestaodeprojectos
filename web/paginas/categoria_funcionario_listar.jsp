@@ -5,8 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="org.ao.projecto.dao.CategoriaFuncionarioDAO" %>
-<%@page import="org.ao.projecto.modelo.CategoriaFuncionario" %>
+<%@page import="org.ao.projeto.dao.*" %>
+<%@page import="org.ao.projeto.modelo.*" %>
 <%@page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
