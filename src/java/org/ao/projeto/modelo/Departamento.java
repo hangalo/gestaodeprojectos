@@ -13,6 +13,8 @@ import java.util.Objects;
  * @author informatica
  */
 public class Departamento implements Serializable{
+
+    private static final long serialVersionUID = 134214791066226493L;
     private Integer idDepartamento;
     private String nomeDepartamento;
 

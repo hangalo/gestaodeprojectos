@@ -13,6 +13,8 @@ import java.util.Objects;
  * @author informatica
  */
 public class TipoProjeto implements Serializable{
+
+    private static final long serialVersionUID = -2047421701087956040L;
     private Integer idTipoProjeto;
     private String nomeTipoProjeto;
 

@@ -14,6 +14,8 @@ import java.util.Objects;
  * @author informatica
  */
 public class Funcionario implements Serializable{
+
+    private static final long serialVersionUID = 4111958799106931827L;
     private Integer idFuncionario;
     private String nomeFuncionario;
     private String sobrenomeFuncionario;

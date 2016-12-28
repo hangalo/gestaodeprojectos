@@ -13,6 +13,8 @@ import java.util.Objects;
  * @author informatica
  */
 public class Municipio implements Serializable{
+
+    private static final long serialVersionUID = -7781733135837169859L;
     private Integer idMunicipio;
     private String nomeMunicipio;
     private Provincia provincia;

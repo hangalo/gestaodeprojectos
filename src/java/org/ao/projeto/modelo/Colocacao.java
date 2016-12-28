@@ -15,6 +15,8 @@ import java.util.Objects;
  * @author informatica
  */
 public class Colocacao implements Serializable{
+
+    private static final long serialVersionUID = -7720161446306268723L;
     private Integer idColocacao;
     private Funcionario funcionario;
     private Projeto projecto;

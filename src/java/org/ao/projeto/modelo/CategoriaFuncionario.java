@@ -13,6 +13,10 @@ import java.util.Objects;
  * @author informatica
  */
 public class CategoriaFuncionario implements Serializable{
+
+    private static final long serialVersionUID = 3557517947011313577L;
+
+   
     private Integer idCategoria;
     private String nomeCategoria;
     private Double salarioCategoria;
