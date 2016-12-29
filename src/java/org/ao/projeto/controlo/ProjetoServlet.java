@@ -153,7 +153,7 @@ public class ProjetoServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-public void doUpload(Part part) {
+private void doUpload(Part part) {
         try {
 
             InputStream in = part.getInputStream();

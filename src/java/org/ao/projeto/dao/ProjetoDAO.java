@@ -25,7 +25,7 @@ public class ProjetoDAO implements GenericoDAO<Projeto> {
     private static final String ACTUALIZAR = "UPDATE projeto SET codigo_projeto = ?, nome_projeto = ?, descricao_projeto = ?, custo_projeto = ?, entidade_financiadora = ?, id_tipo_projeto = ? WHERE id_projeto = ?";
     private static final String ELIMINAR = "DELETE FROM projeto WHERE id_projeto = ?";
     private static final String BUSCAR_POR_CODIGO = "SELECT p.id_projeto, p.codigo_projeto, p.nome_projeto, p.descricao_projeto, p.custo_projeto, p.entidade_financiadora,  t.nome_tipo_projeto FROM projeto p INNER JOIN tipo_projeto t ON p.id_tipo_projeto = t.id_tipo_projeto WHERE p.id_projeto = ?";
-    private static final String LISTAR_TUDO = "SELECT p.id_projeto, p.codigo_projeto, p.nome_projeto, p.descricao_projeto, p.custo_projeto, p.entidade_financiadora, t.nome_tipo_projeto FROM projeto p INNER JOIN tipo_projeto t ON p.id_tipo_projeto = t.id_tipo_projeto";
+    private static final String LISTAR_TUDO = "SELECT p.id_projeto, p.codigo_projeto, p.nome_projeto, p.descricao_projeto, p.custo_projeto, p.entidade_financiadora, t.nome_tipo_projeto, p.imagem_projeto, p.ficheiro_imagem_projeto FROM projeto p INNER JOIN tipo_projeto t ON p.id_tipo_projeto = t.id_tipo_projeto";
 
    
 
@@ -166,7 +166,10 @@ public class ProjetoDAO implements GenericoDAO<Projeto> {
             projeto.setEntidadeFinanciadora(rs.getString("p.entidade_financiadora"));
             TipoProjeto tipoProjecto = new TipoProjeto();
             tipoProjecto.setNomeTipoProjeto(rs.getString("t.nome_tipo_projeto"));
-            projeto.setTipoProjeto(tipoProjecto);
+              projeto.setTipoProjeto(tipoProjecto);
+            projeto.setImagemProjeto(rs.getBytes("p.imagem_projeto"));
+            projeto.setFicheiroImagemProjeto(rs.getString("p.ficheiro_imagem_projeto"));
+          
 
         } catch (SQLException ex) {
             System.err.println("Erro ao carregar dados: " + ex.getLocalizedMessage());
