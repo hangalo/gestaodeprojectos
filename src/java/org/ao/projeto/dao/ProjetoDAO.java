@@ -50,8 +50,8 @@ public class ProjetoDAO implements GenericoDAO<Projeto> {
             ps.setDouble(4, projeto.getCustoProjeto());
             ps.setString(5, projeto.getEntidadeFinanciadora());
             ps.setBytes(6, projeto.getImagemProjeto());
-            ps.setString(6, projeto.getFicheiroImagemProjeto());
-            ps.setInt(7, projeto.getTipoProjeto().getIdTipoProjeto());
+            ps.setString(7, projeto.getFicheiroImagemProjeto());
+            ps.setInt(8, projeto.getTipoProjeto().getIdTipoProjeto());
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Erro ao inserir dados: " + ex.getLocalizedMessage());
