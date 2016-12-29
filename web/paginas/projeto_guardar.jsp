@@ -38,7 +38,7 @@
                     <br/>
 
 
-                    <form class="form-horizontal" role="form" action="../projetoServlet?comando=guardar" method="POST">
+                    <form class="form-horizontal" role="form"  enctype="multipart/form-data" action="../projetoServlet?comando=guardar" method="POST">
 
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Código:</label>
@@ -74,13 +74,15 @@
                                 <input type="text"  class="form-control" id="financiador_projeto" name="financiador_projeto"/>
                             </div>
                         </div>
+                        
+                        
 
                         <div class="form-group">
 
                             <label class="col-xs-3 control-label">Tipo</label>
                             <div class="col-xs-5" >
                                 <select class="form-control" id="select_tipo_projeto" name="select_tipo_projeto">
-                                    <option selected="true" value="">Selecione um Funcionario</option>
+                                    <option selected="true" value="">Selecione o tipo de projeto</option>
 
                                     <% for (TipoProjeto tipoProjeto : tipoProjetos) {%>
                                     <option value="<%=tipoProjeto.getIdTipoProjeto()%>"><%=tipoProjeto.getNomeTipoProjeto()%></option>
@@ -91,6 +93,12 @@
 
                                 </select>
 
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-xs-3 control-label">Imagem</label>
+                            <div class="col-xs-5" >
+                                <input type="file"  class="form-control" id="imagem" name="imagem"/>
                             </div>
                         </div>
 

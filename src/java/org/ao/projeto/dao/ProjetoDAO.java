@@ -21,7 +21,7 @@ import org.ao.projeto.util.Conexao;
  */
 public class ProjetoDAO implements GenericoDAO<Projeto> {
 
-    private static final String INSERIR = "INSERT INTO projeto(codigo_projeto, nome_projeto, descricao_projeto, custo_projeto, entidade_financiadora, id_tipo_projeto) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String INSERIR = "INSERT INTO projeto(codigo_projeto, nome_projeto, descricao_projeto, custo_projeto, entidade_financiadora, imagem_projeto, ficheiro_imagem_projeto, id_tipo_projeto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String ACTUALIZAR = "UPDATE projeto SET codigo_projeto = ?, nome_projeto = ?, descricao_projeto = ?, custo_projeto = ?, entidade_financiadora = ?, id_tipo_projeto = ? WHERE id_projeto = ?";
     private static final String ELIMINAR = "DELETE FROM projeto WHERE id_projeto = ?";
     private static final String BUSCAR_POR_CODIGO = "SELECT p.id_projeto, p.codigo_projeto, p.nome_projeto, p.descricao_projeto, p.custo_projeto, p.entidade_financiadora,  t.nome_tipo_projeto FROM projeto p INNER JOIN tipo_projeto t ON p.id_tipo_projeto = t.id_tipo_projeto WHERE p.id_projeto = ?";
@@ -49,7 +49,9 @@ public class ProjetoDAO implements GenericoDAO<Projeto> {
             ps.setString(3, projeto.getDescricaoProjeto());
             ps.setDouble(4, projeto.getCustoProjeto());
             ps.setString(5, projeto.getEntidadeFinanciadora());
-            ps.setInt(6, projeto.getTipoProjeto().getIdTipoProjeto());
+            ps.setBytes(6, projeto.getImagemProjeto());
+            ps.setString(6, projeto.getFicheiroImagemProjeto());
+            ps.setInt(7, projeto.getTipoProjeto().getIdTipoProjeto());
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Erro ao inserir dados: " + ex.getLocalizedMessage());

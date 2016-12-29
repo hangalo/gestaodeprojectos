@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <label class="col-xs-3 control-label">Tipo:</label>
                     <div class="col-xs-5" >
-                        <input type="date"  class="form-control" id="nome_tipo" name="nome_tipo_projeto" />
+                        <input type="text"  class="form-control" id="nome_tipo" name="nome_tipo_projeto" />
                     </div>
                 </div>
 

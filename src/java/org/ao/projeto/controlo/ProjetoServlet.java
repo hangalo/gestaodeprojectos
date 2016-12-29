@@ -5,16 +5,21 @@
  */
 package org.ao.projeto.controlo;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import org.ao.projeto.dao.ProjetoDAO;
 import org.ao.projeto.modelo.Projeto;
 import org.ao.projeto.modelo.TipoProjeto;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -26,6 +31,7 @@ public class ProjetoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        Part ficheiro = request.getPart("imagem");
         String comando = request.getParameter("comando");
         
         if (comando == null) {
@@ -59,7 +65,11 @@ public class ProjetoServlet extends HttpServlet {
                 projeto.setEntidadeFinanciadora(request.getParameter("financiador_projeto"));
                 TipoProjeto tipoProjeto = new TipoProjeto();
                 tipoProjeto.setIdTipoProjeto(Integer.parseInt(request.getParameter("select_tipo_projeto")));
+                byte[] ficheiroImagem = IOUtils.toByteArray(ficheiro.getInputStream());
+                projeto.setImagemProjeto(ficheiroImagem);
+                projeto.setFicheiroImagemProjeto(ficheiro.getSubmittedFileName());                        
                 projeto.setTipoProjeto(tipoProjeto);
+                doUpload(ficheiro);
                 projetoDAO.save(projeto);
                 response.sendRedirect("paginas/projeto_guardar.jsp");
                 
@@ -140,5 +150,44 @@ public class ProjetoServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+public void doUpload(Part part) {
+        try {
+
+            InputStream in = part.getInputStream();
+            
+            File f = new File("D:\\imagens_projeto\\" + part.getSubmittedFileName());
+            
+            //para guardar num disco de rede com IP
+            // File f = new File("\\\\192.168.0.4\\public\\" + foto.getSubmittedFileName());
+
+            /*
+            PARA GUARDAR NUMA PASTA DENTRO DO PROJECTO BASTA FAZER
+            String path ="/imagens_projeto";
+            File f = new File(path);
+            if(!f.exists()){
+              f.mkdir();
+            }
+             */
+            f.createNewFile();
+            FileOutputStream out = new FileOutputStream(f);
+
+            byte[] buffer = new byte[1024 * 1024 * 100];
+
+            int length;
+
+            while ((length = in.read(buffer)) > 0) {
+                out.write(buffer, 0, length);
+            }
+            out.close();
+            in.close();       
+            
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+}
+
 
 }

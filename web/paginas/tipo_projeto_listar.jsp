@@ -51,13 +51,13 @@
                         <tbody>
                             <%for (TipoProjeto tipoProjeto : tipoProjetos) {%>
                             <tr>
-                                <td><%=tipoProjeto.getIdTipoProjecto()%></td>
-                                <td><%=tipoProjeto.getNomeTipoProjecto()%></td>
+                                <td><%=tipoProjeto.getIdTipoProjeto()%></td>
+                                <td><%=tipoProjeto.getNomeTipoProjeto()%></td>
 
 
 
-                                <td><a href="../tipoProjetoServlet?comando=prepara_editar&id_tipo_projeto=<%=tipoProjeto.getIdTipoProjecto()%>"> <img src="../imagens/edit.png"/></a></td>
-                                <td><a href="../tipoProjetoServlet?comando=eliminar&id_tipo_projeto=<%=tipoProjeto.getIdTipoProjecto()%>"> <img src="../imagens/delete.png" /> </a></td>
+                                <td><a href="../tipoProjetoServlet?comando=prepara_editar&id_tipo_projeto=<%=tipoProjeto.getIdTipoProjeto()%>"> <img src="../imagens/edit.png"/></a></td>
+                                <td><a href="../tipoProjetoServlet?comando=eliminar&id_tipo_projeto=<%=tipoProjeto.getIdTipoProjeto()%>"> <img src="../imagens/delete.png" /> </a></td>
                             </tr>
                             <%}%>
                         </tbody>

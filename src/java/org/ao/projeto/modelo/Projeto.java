@@ -22,6 +22,8 @@ public class Projeto implements Serializable {
     private String descricaoProjeto;
     private Double custoProjeto;
     private String entidadeFinanciadora;
+    private byte [] imagemProjeto;
+    private String ficheiroImagemProjeto;
     private TipoProjeto tipoProjeto;
 
     public Projeto() {
@@ -75,6 +77,22 @@ public class Projeto implements Serializable {
 
     public void setEntidadeFinanciadora(String entidadeFinanciadora) {
         this.entidadeFinanciadora = entidadeFinanciadora;
+    }
+
+    public byte[] getImagemProjeto() {
+        return imagemProjeto;
+    }
+
+    public void setImagemProjeto(byte[] imagemProjeto) {
+        this.imagemProjeto = imagemProjeto;
+    }
+
+    public String getFicheiroImagemProjeto() {
+        return ficheiroImagemProjeto;
+    }
+
+    public void setFicheiroImagemProjeto(String ficheiroImagemProjeto) {
+        this.ficheiroImagemProjeto = ficheiroImagemProjeto;
     }
 
     
