@@ -156,8 +156,10 @@ public class ProjetoServlet extends HttpServlet {
 private void doUpload(Part part) {
         try {
 
-            InputStream in = part.getInputStream();
             
+            InputStream in = part.getInputStream();
+           
+             
             File f = new File("D:\\imagens_projeto\\" + part.getSubmittedFileName());
             
             //para guardar num disco de rede com IP
