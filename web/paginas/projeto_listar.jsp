@@ -67,6 +67,8 @@
                                 <td><%=projeto.getEntidadeFinanciadora()%></td>
                                 <td><%=projeto.getTipoProjeto()%></td>
                                 <td> <img src="../projetoVisualizaImagens/?ficheiro=<%=projeto.getFicheiroImagemProjeto()%>" width="60" height="60" </td>
+                                
+                                <td> <img src="../projectoServletVisualizaImagemBinaria/?idImagem=<%=projeto.getIdProjeto()%>" width="60" height="60" </td>
 
                                 <td><a href="../projetoServlet?comando=prepara_editar&id_projeto=<%=projeto.getIdProjeto()%>"><img src="../imagens/edit.png" /></a></td>
                                 <td><a href="../projetoServlet?comando=eliminar&id_projeto=<%=projeto.getIdProjeto()%>"><img src="../imagens/delete.png" /></a></td>

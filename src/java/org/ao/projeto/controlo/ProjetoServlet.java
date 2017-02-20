@@ -71,7 +71,7 @@ public class ProjetoServlet extends HttpServlet {
                 projeto.setImagemProjeto(ficheiroImagem);
                 projeto.setFicheiroImagemProjeto(ficheiro.getSubmittedFileName());                        
                 projeto.setTipoProjeto(tipoProjeto);
-                doUpload(ficheiro);
+                doUpload(ficheiro, request);
                 projetoDAO.save(projeto);
                 response.sendRedirect("paginas/projeto_guardar.jsp");
                 
@@ -153,7 +153,7 @@ public class ProjetoServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-private void doUpload(Part part) {
+private void doUpload(Part part, HttpServletRequest request) {
         try {
 
             
@@ -162,13 +162,15 @@ private void doUpload(Part part) {
              
             File f = new File("D:\\imagens_projeto\\" + part.getSubmittedFileName());
             
+          
+            
             //para guardar num disco de rede com IP
             // File f = new File("\\\\192.168.0.4\\public\\" + foto.getSubmittedFileName());
 
             /*
             PARA GUARDAR NUMA PASTA DENTRO DO PROJECTO BASTA FAZER
-            String path ="/imagens_projeto";
-            File f = new File(path);
+            String pastaDestino = request.getServletContext().getRealPath("/images/");
+            File f = new File(pastaDestino +  + part.getSubmittedFileName() );
             if(!f.exists()){
               f.mkdir();
             }

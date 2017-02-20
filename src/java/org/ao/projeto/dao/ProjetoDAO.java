@@ -26,11 +26,10 @@ public class ProjetoDAO implements GenericoDAO<Projeto> {
     private static final String ELIMINAR = "DELETE FROM projeto WHERE id_projeto = ?";
     private static final String BUSCAR_POR_CODIGO = "SELECT p.id_projeto, p.codigo_projeto, p.nome_projeto, p.descricao_projeto, p.custo_projeto, p.entidade_financiadora,  t.nome_tipo_projeto FROM projeto p INNER JOIN tipo_projeto t ON p.id_tipo_projeto = t.id_tipo_projeto WHERE p.id_projeto = ?";
     private static final String LISTAR_TUDO = "SELECT p.id_projeto, p.codigo_projeto, p.nome_projeto, p.descricao_projeto, p.custo_projeto, p.entidade_financiadora, t.nome_tipo_projeto, p.imagem_projeto, p.ficheiro_imagem_projeto FROM projeto p INNER JOIN tipo_projeto t ON p.id_tipo_projeto = t.id_tipo_projeto";
-
-   
+    private static final String BUSCAR_IMAGEM_POR_CODIGO = "SELECT p.id_projeto, p.codigo_projeto, p.nome_projeto, p.descricao_projeto, p.custo_projeto, p.entidade_financiadora, t.nome_tipo_projeto, p.imagem_projeto, p.ficheiro_imagem_projeto FROM projeto p INNER JOIN tipo_projeto t ON p.id_tipo_projeto = t.id_tipo_projeto WHERE p.id_projeto = ?";
 
     public ProjetoDAO() {
-       
+
     }
 
     @Override
@@ -42,7 +41,7 @@ public class ProjetoDAO implements GenericoDAO<Projeto> {
             System.err.println("O valor passado nao pode ser nulo");
         }
         try {
-            conn =  Conexao.getConnection();
+            conn = Conexao.getConnection();
             ps = conn.prepareStatement(INSERIR);
             ps.setString(1, projeto.getCodigoProjeto());
             ps.setString(2, projeto.getNomeProjeto());
@@ -71,7 +70,7 @@ public class ProjetoDAO implements GenericoDAO<Projeto> {
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(ACTUALIZAR);
-             ps.setString(1, projeto.getCodigoProjeto());
+            ps.setString(1, projeto.getCodigoProjeto());
             ps.setString(2, projeto.getNomeProjeto());
             ps.setString(3, projeto.getDescricaoProjeto());
             ps.setDouble(4, projeto.getCustoProjeto());
@@ -95,7 +94,7 @@ public class ProjetoDAO implements GenericoDAO<Projeto> {
             System.err.println("O valor passado nao pode ser nulo");
         }
         try {
-            conn =  Conexao.getConnection();
+            conn = Conexao.getConnection();
             ps = conn.prepareStatement(ELIMINAR);
             ps.setInt(1, projeto.getIdProjeto());
             ps.executeUpdate();
@@ -115,7 +114,7 @@ public class ProjetoDAO implements GenericoDAO<Projeto> {
         Projeto projeto = new Projeto();
 
         try {
-            conn =  Conexao.getConnection();
+            conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
             ps.setInt(1, id);
             rs = ps.executeQuery();
@@ -139,7 +138,7 @@ public class ProjetoDAO implements GenericoDAO<Projeto> {
         ResultSet rs = null;
         List<Projeto> projetos = new ArrayList<>();
         try {
-            conn =  Conexao.getConnection();
+            conn = Conexao.getConnection();
             ps = conn.prepareStatement(LISTAR_TUDO);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -156,6 +155,29 @@ public class ProjetoDAO implements GenericoDAO<Projeto> {
         return projetos;
     }
 
+    public byte[] recuperarImagem(Integer id) {
+        byte[] imagem = null;
+        PreparedStatement ps;
+        Connection conn = null;
+        ResultSet rs;
+        try {
+            conn = Conexao.getConnection();
+            ps = conn.prepareStatement(BUSCAR_IMAGEM_POR_CODIGO);
+            ps.setInt(1, id);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                imagem = rs.getBytes("p.imagem_projeto");
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
+        } finally {
+            Conexao.closeConnection(conn);
+        }
+
+        return imagem;
+    }
+
     private void popularComDados(Projeto projeto, ResultSet rs) {
         try {
             projeto.setIdProjeto(rs.getInt("p.id_projeto"));
@@ -166,10 +188,9 @@ public class ProjetoDAO implements GenericoDAO<Projeto> {
             projeto.setEntidadeFinanciadora(rs.getString("p.entidade_financiadora"));
             TipoProjeto tipoProjecto = new TipoProjeto();
             tipoProjecto.setNomeTipoProjeto(rs.getString("t.nome_tipo_projeto"));
-              projeto.setTipoProjeto(tipoProjecto);
+            projeto.setTipoProjeto(tipoProjecto);
             projeto.setImagemProjeto(rs.getBytes("p.imagem_projeto"));
             projeto.setFicheiroImagemProjeto(rs.getString("p.ficheiro_imagem_projeto"));
-          
 
         } catch (SQLException ex) {
             System.err.println("Erro ao carregar dados: " + ex.getLocalizedMessage());
