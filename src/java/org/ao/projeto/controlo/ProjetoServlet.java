@@ -29,35 +29,34 @@ import org.apache.commons.io.IOUtils;
 @WebServlet(name = "ProjetoServlet", urlPatterns = {"/projetoServlet"})
 @MultipartConfig(maxFileSize = 16177215) // tamanho maximo do ficheiro 16 MB
 public class ProjetoServlet extends HttpServlet {
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        Part ficheiro = request.getPart("imagem");
+
         String comando = request.getParameter("comando");
-        
+
         if (comando == null) {
             comando = "principal";
         }
-        
+
         ProjetoDAO projetoDAO;
         Projeto projeto = new Projeto();
-        
+
         if (comando == null || !comando.equalsIgnoreCase("principal")) {
-            
+
             try {
                 String idProjeto = request.getParameter("id_projeto");
                 if (idProjeto != null) {
                     projeto.setIdProjeto(Integer.parseInt(idProjeto));
                 }
-                
+
             } catch (NumberFormatException ex) {
                 System.err.println("Erro ao converter dado: " + ex.getMessage());
             }
         }
-        
+
         try {
-            
+
             projetoDAO = new ProjetoDAO();
             if (comando.equalsIgnoreCase("guardar")) {
                 projeto.setCodigoProjeto(request.getParameter("codigo_projeto"));
@@ -67,14 +66,19 @@ public class ProjetoServlet extends HttpServlet {
                 projeto.setEntidadeFinanciadora(request.getParameter("financiador_projeto"));
                 TipoProjeto tipoProjeto = new TipoProjeto();
                 tipoProjeto.setIdTipoProjeto(Integer.parseInt(request.getParameter("select_tipo_projeto")));
-                byte[] ficheiroImagem = IOUtils.toByteArray(ficheiro.getInputStream());
-                projeto.setImagemProjeto(ficheiroImagem);
-                projeto.setFicheiroImagemProjeto(ficheiro.getSubmittedFileName());                        
-                projeto.setTipoProjeto(tipoProjeto);
-                doUpload(ficheiro, request);
+
+                Part ficheiro = request.getPart("imagem");
+                if (ficheiro != null) {
+                    byte[] ficheiroImagem = IOUtils.toByteArray(ficheiro.getInputStream());
+                    projeto.setImagemProjeto(ficheiroImagem);
+                    projeto.setFicheiroImagemProjeto(ficheiro.getSubmittedFileName());
+                    projeto.setTipoProjeto(tipoProjeto);
+                    doUpload(ficheiro, request);
+                }
+
                 projetoDAO.save(projeto);
                 response.sendRedirect("paginas/projeto_guardar.jsp");
-                
+
             } else if (comando.equalsIgnoreCase("editar")) {
                 projetoDAO = new ProjetoDAO();
                 projeto.setIdProjeto(Integer.parseInt(request.getParameter("id_projeto")));
@@ -86,32 +90,39 @@ public class ProjetoServlet extends HttpServlet {
                 TipoProjeto tipoProjeto = new TipoProjeto();
                 tipoProjeto.setIdTipoProjeto(Integer.parseInt(request.getParameter("select_tipo_projeto")));
                 projeto.setTipoProjeto(tipoProjeto);
-                
+                Part ficheiro = request.getPart("imagem");
+                if (ficheiro != null) {
+                    byte[] ficheiroImagem = IOUtils.toByteArray(ficheiro.getInputStream());
+                    projeto.setImagemProjeto(ficheiroImagem);
+                    projeto.setFicheiroImagemProjeto(ficheiro.getSubmittedFileName());
+                    projeto.setTipoProjeto(tipoProjeto);
+                    doUpload(ficheiro, request);
+                }
                 projetoDAO.update(projeto);
                 System.out.println("Atualizado com sucesso");
                 response.sendRedirect("paginas/projeto_listar.jsp");
-                
+
             } else if (comando.equalsIgnoreCase("eliminar")) {
                 projetoDAO.delete(projeto);
                 response.sendRedirect("paginas/projeto_listar.jsp");
-                
+
             } else if (comando.equalsIgnoreCase("prepara_editar")) {
                 projeto = projetoDAO.findById(projeto.getIdProjeto());
                 request.setAttribute("projeto", projeto);
-                
+
                 RequestDispatcher rd = request.getRequestDispatcher("paginas/projeto_editar.jsp");
                 rd.forward(request, response);
             } else if (comando.equalsIgnoreCase("listar")) {
-                
+
                 response.sendRedirect("paginas/projeto_listar.jsp");
             } else if (comando.equalsIgnoreCase("principla")) {
                 response.sendRedirect("/index.jsp");
             }
-            
+
         } catch (IOException | ServletException ex) {
             System.err.println("Erro na leitura dos dados: " + ex.getMessage());
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -153,17 +164,13 @@ public class ProjetoServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-private void doUpload(Part part, HttpServletRequest request) {
+    private void doUpload(Part part, HttpServletRequest request) {
         try {
 
-            
             InputStream in = part.getInputStream();
-           
-             
+
             File f = new File("D:\\imagens_projeto\\" + part.getSubmittedFileName());
-            
-          
-            
+
             //para guardar num disco de rede com IP
             // File f = new File("\\\\192.168.0.4\\public\\" + foto.getSubmittedFileName());
 
@@ -186,14 +193,11 @@ private void doUpload(Part part, HttpServletRequest request) {
                 out.write(buffer, 0, length);
             }
             out.close();
-            in.close();       
-            
-
+            in.close();
 
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
         }
-}
-
+    }
 
 }

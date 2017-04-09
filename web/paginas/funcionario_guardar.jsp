@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="org.ao.projeto.modelo.Sexo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="org.ao.projecto.modelo.*" %>
 <%@page import="org.ao.projecto.dao.*" %>

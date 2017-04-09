@@ -13,11 +13,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>Editar- Categoria de Funcionario</title>
-        <link href="./css/bootstrap.min.css" rel="stylesheet">
-        <link href="./css/estilos.css" rel="stylesheet">
-        <link href="./css/layout_paginas.css" rel="stylesheet">
-        <script src="./js/bootstrap.min.js"></script>
-        <script src="./js/jquery-1.12.3.min.js"></script>
+        <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
+        <link href="<%=request.getContextPath()%>/css/estilos.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/css/layout_paginas.css" rel="stylesheet">
+        <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script>
     </head>
     <body>
         <div class="container">
